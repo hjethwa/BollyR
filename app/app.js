@@ -31,6 +31,9 @@ function onPlayerReady(event) {
 
   $.get(url, function(data, textStatus)
   {
+    var listItem = $('<li>').append('<span>').append(data.items[23].id.videoId);
+    $('#currentPlaylistList').append(listItem);
+
     playVideo(data.items[23].id.videoId + "");
   });
 }
