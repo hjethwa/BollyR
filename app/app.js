@@ -40,7 +40,7 @@ function onPlayerReady(event) {
       $('#currentPlaylistList').append(listItem);*/
       var listItem = $('<li>').append('<span>').append(data.items[i].snippet.title).on("click", function(event) {
         var index = $(this).index();
-        playVideo(data.items[index].id.videoId);
+        playVideo(data.items[index-1].id.videoId);
       });
       $('#currentPlaylistList').append(listItem);
     }
