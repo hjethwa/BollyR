@@ -12,8 +12,8 @@ firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
 var player;
 function onYouTubeIframeAPIReady() {
   player = new YT.Player('player', {
-    height: '720',
-    width: '1280',
+    height: '480',
+    width: '640',
     videoId: 'GiG6z_H2m4M',
     events: {
       'onReady': onPlayerReady,
@@ -26,6 +26,13 @@ function onYouTubeIframeAPIReady() {
 function onPlayerReady(event) {
   event.target.loadVideoById("cnYqtB9aSXg");
   event.target.setPlaybackQuality("hd1080");
+
+  var url = "https://www.googleapis.com/youtube/v3/search?key=AIzaSyBjzG1Xi1MrGsuQPutHd9v6yX4lGxSyqTE&channelId=UCq-Fj5jknLsUf-MWSy4_brA&part=snippet,id&order=date&maxResults=50";
+
+  $.get(url, function(data, textStatus)
+  {
+    playVideo(data.items[23].id.videoId + "");
+  });
 }
 
 // 5. The API calls this function when the player's state changes.
@@ -34,7 +41,7 @@ function onPlayerReady(event) {
 var done = false;
 function onPlayerStateChange(event) {
   if (event.data == YT.PlayerState.PLAYING && !done) {
-    setTimeout(stopVideo, 6000);
+    //setTimeout(stopVideo, 6000);
     done = true;
   }
 }
@@ -43,14 +50,9 @@ function stopVideo() {
 }
 
 function playVideo(id) {
-  player.loadVideoById("ztVF3lfi7ug");
+  player.loadVideoById(id);
 }
 
 
-var url = "https://www.googleapis.com/youtube/v3/search?key=AIzaSyBjzG1Xi1MrGsuQPutHd9v6yX4lGxSyqTE&channelId=UCq-Fj5jknLsUf-MWSy4_brA&part=snippet,id&order=date&maxResults=20";
 
-$.get(url, function(data, textStatus)
-{
-  playVideo(data.items[0].id.videoId + "");
-});
 
