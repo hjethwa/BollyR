@@ -31,10 +31,19 @@ function onPlayerReady(event) {
 
   $.get(url, function(data, textStatus)
   {
-    var listItem = $('<li>').append('<span>').append(data.items[23].id.videoId);
-    $('#currentPlaylistList').append(listItem);
-
-    playVideo(data.items[23].id.videoId + "");
+    var i = 0;
+    var allItems = data.items.length;
+    for (i = 0; i < allItems; i++) {
+      /*var listItem = $('<li>').append('<span>').append(data.items[23].snippet.title).on( "click", function() {
+        playVideo(data.items[23].id.videoId);
+      });;
+      $('#currentPlaylistList').append(listItem);*/
+      var listItem = $('<li>').append('<span>').append(data.items[i].snippet.title).on("click", function(event) {
+        var index = $(this).index();
+        playVideo(data.items[index].id.videoId);
+      });
+      $('#currentPlaylistList').append(listItem);
+    }
   });
 }
 
