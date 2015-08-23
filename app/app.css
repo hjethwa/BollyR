@@ -1,4 +1,29 @@
 /* app css stylesheet */
 #currentPlaylist {
-  float: right;
+    width: 255px;
+    min-height: 20px;
+    margin: 0;
+    padding: 0 0 0 0;
+    float: right;
+    margin-right: 10px;
+}
+
+#sortable2 {
+    border: 1px solid #eee;
+    width: 142px;
+    min-height: 20px;
+    list-style-type: none;
+    margin: 0;
+    padding: 5px 0 0 0;
+    float: right;
+    margin-right: 10px;
+}
+
+#currentPlaylist li, #sortable2 li {
+    margin: 0 5px 5px 5px;
+    padding: 5px;
+    border: 1px solid #eee;
+    font-size: 0.8em;
+    width: 200px;
+    list-style-type: none;
 }

@@ -34,18 +34,18 @@ function onPlayerReady(event) {
     var i = 0;
     var allItems = data.items.length;
     for (i = 0; i < allItems; i++) {
-      /*var listItem = $('<li>').append('<span>').append(data.items[23].snippet.title).on( "click", function() {
-        playVideo(data.items[23].id.videoId);
-      });;
-      $('#currentPlaylistList').append(listItem);*/
-      var listItem = $('<li>').append('<span>').append(data.items[i].snippet.title).on("click", function(event) {
-        var index = $(this).index();
-        playVideo(data.items[index-1].id.videoId);
+      var play = $('<span>').addClass('ui-icon ui-icon-triangle-1-e').on("click", function(event) {
+        var index = $(this).parent().index();
+        playVideo(data.items[index].id.videoId);
       });
+      var listItem = $('<li>').append('<span>').append(data.items[i].snippet.title).append(play);
       $('#currentPlaylistList').append(listItem);
     }
   });
 }
+
+$( "#currentPlaylistList" ).sortable();
+$( "#currentPlaylistList" ).disableSelection();
 
 // 5. The API calls this function when the player's state changes.
 //    The function indicates that when playing a video (state=1),
