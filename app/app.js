@@ -34,11 +34,14 @@ function onPlayerReady(event) {
     var i = 0;
     var allItems = data.items.length;
     for (i = 0; i < allItems; i++) {
-      var play = $('<span>').addClass('ui-icon ui-icon-triangle-1-e').on("click", function(event) {
-        var index = $(this).parent().index();
+      var play = $('<img>').attr("src", "images/icon-play.png").addClass('play-icon').on("click", function(event) {
+        // First parent is div, next parent is li.
+        var index = $(this).parent().parent().index();
         playVideo(data.items[index].id.videoId);
       });
-      var listItem = $('<li>').append('<span>').append(data.items[i].snippet.title).append(play);
+      var spanText = $('<div>').addClass('li-text').append(data.items[i].snippet.title);
+      var innerItemDiv = $('<div>').append(spanText).append(play);
+      var listItem = $('<li>').append(innerItemDiv);
       $('#currentPlaylistList').append(listItem);
     }
   });

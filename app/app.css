@@ -1,29 +1,48 @@
 /* app css stylesheet */
 #currentPlaylist {
-    width: 255px;
+    width: 280px;
     min-height: 20px;
-    margin: 0;
-    padding: 0 0 0 0;
     float: right;
-    margin-right: 10px;
 }
 
 #sortable2 {
-    border: 1px solid #eee;
-    width: 142px;
+    width: 280px;
     min-height: 20px;
-    list-style-type: none;
-    margin: 0;
-    padding: 5px 0 0 0;
     float: right;
-    margin-right: 10px;
 }
 
-#currentPlaylist li, #sortable2 li {
-    margin: 0 5px 5px 5px;
-    padding: 5px;
-    border: 1px solid #eee;
-    font-size: 0.8em;
-    width: 200px;
+#player {
+    position: fixed;
+}
+
+li {
     list-style-type: none;
+    padding: 5px;
+    margin: 5px;
+    border: 1px solid #eee;
+    width: 100%;
+    overflow:auto;
+    position: relative;
+    background: #d46745;
+}
+
+.li-text {
+    font-size: 0.9em;
+    color: aliceblue;
+    float: left;
+    clear: right;
+    width: 200px;
+}
+
+.play-icon {
+    width: 20px;
+    height: 20px;
+    float: right;
+    vertical-align: middle;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    position: absolute;
+    margin: auto;
+    padding-right: 10px;
 }
