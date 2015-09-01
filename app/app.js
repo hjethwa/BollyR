@@ -31,17 +31,16 @@ function onPlayerReady(event) {
 
   $.get(url, function(data, textStatus)
   {
-    var i = 0;
-    var allItems = data.items.length;
-    for (i = 0; i < allItems; i++) {
+    var totalSongs = data.items.length;
+    for (var i = 0; i < totalSongs; i++) {
       var play = $('<img>').attr("src", "images/icon-play.png").addClass('play-icon').on("click", function(event) {
         // First parent is div, next parent is li.
-        var index = $(this).parent().parent().index();
-        playVideo(data.items[index].id.videoId);
+        var youtubeVideoId = $(this).parent().parent().attr("youtubevideoid");
+        playVideo(youtubeVideoId);
       });
-      var spanText = $('<div>').addClass('li-text').append(data.items[i].snippet.title);
-      var innerItemDiv = $('<div>').append(spanText).append(play);
-      var listItem = $('<li>').append(innerItemDiv);
+      var divText = $('<div>').addClass('li-text').append(data.items[i].snippet.title);
+      var innerItemDiv = $('<div>').append(divText).append(play);
+      var listItem = $('<li>').attr("youtubevideoid", data.items[i].id.videoId).append(innerItemDiv);
       $('#currentPlaylistList').append(listItem);
     }
   });
@@ -53,11 +52,9 @@ $( "#currentPlaylistList" ).disableSelection();
 // 5. The API calls this function when the player's state changes.
 //    The function indicates that when playing a video (state=1),
 //    the player should play for six seconds and then stop.
-var done = false;
 function onPlayerStateChange(event) {
-  if (event.data == YT.PlayerState.PLAYING && !done) {
-    //setTimeout(stopVideo, 6000);
-    done = true;
+  if (event.data == YT.PlayerState.ENDED) {
+    playNextVideo();
   }
 }
 function stopVideo() {
@@ -67,6 +64,14 @@ function stopVideo() {
 function playVideo(id) {
   player.loadVideoById(id);
 }
+
+function playNextVideo(){
+  var firstListElement = $('#currentPlaylistList li').first();
+  playVideo(firstListElement.attr("youtubevideoid"));
+  // Removes first element.
+  // Remove first list element.
+  firstListElement.remove();
+};
 
 
 

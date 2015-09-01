@@ -23,12 +23,12 @@ li {
     width: 100%;
     overflow:auto;
     position: relative;
-    background: #d46745;
+    background: #eee;
 }
 
 .li-text {
     font-size: 0.9em;
-    color: aliceblue;
+    color: darkblue;
     float: left;
     clear: right;
     width: 200px;
@@ -44,5 +44,5 @@ li {
     right: 0;
     position: absolute;
     margin: auto;
-    padding-right: 10px;
+    padding-right: 15px;
 }
